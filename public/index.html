@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calendar Viewer</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ICalendar">
+    <meta name="keywords" content="CHANGE ME">
+    <meta name="author" content="Brayden Klemens">
+    <!-- Load jquery, bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <!-- Custom CSS End -->
+</head>
+<body>
+    <h1>Calendar Viewer</h1><hr>
+    <!--Status Panel --> 
+    <h3>Status Panel</h3><br/>
+    <textarea rows="4" cols="50" id="status" readonly></textarea>
+
+    <div class="form-group">
+        <input type='submit' class="btn btn-primary" value = "Clear" id="clearButton">
+    </div><hr>
+
+     <!-- File log panel -->
+    <h3>File Log Panel</h3><br/>
+    <div class ="scroll">
+        <table id = "log_table">
+            <tr>
+                <th>File Name<br/>(click to download)</th>
+                <th>Version</th>
+                <th>Product ID</th>
+                <th>Number of events</th>
+                <th>Number of properties</th>
+            </tr>
+        </table>
+    </div><br/>
+
+    <form ref='uploadfile_form'
+          id='uploadfile_form'>
+        <div class="form-group">
+            <label for="upbtn">Upload file</label>
+            <input type="file" class="btn btn-primary" value = "Upload" id="uploadButton">
+        </div>
+    </form>
+
+     <!-- Calendar View Panel -->
+    <hr><h3>Calendar View Panel</h3><br/>
+    <label for = "view_dropdown">Select a file to view:</label>
+    <select id = "view_dropdown">
+        <option></option>
+    </select>
+    <div class ="scroll">
+        <table id = "view_table">
+            <tr>
+                <th>Event</th>
+                <th>Start Date</th>
+                <th>Start Time</th>
+                <th>Summary</th>
+                <th>Props</th>
+                <th>Alarms</th>
+            </tr>
+        </table>
+    </div><br/>
+
+    <!-- show alarm -->
+    <div id ="view_forms">
+        <div>
+            <label for="showalarm_entry">Show alarms (Enter Event No)</label>
+            <input type="text" class="form-control" id="showalarm_entry">
+            <br/>
+            <input type='submit' class="btn btn-primary" value ="Enter" id="show_alarm_btn">
+        </div><br/>
+
+        <!-- extract props -->
+        <div>
+            <label for="extract_entry">Extract optional props (Enter Event No)</label>
+            <input type="text" class="form-control" id="extract_entry">
+            <br/>
+            <input type='submit' class="btn btn-primary" value ="Enter" id="extract_entry_btn">
+        </div>
+    </div><hr>
+
+    <!-- create Event area -->
+    <h3>Create Event</h3>
+
+    <label for = "view_dropdown_event">Select a file to add an event to:</label>
+    <select id = "view_dropdown_event">
+        <option></option>
+    </select>
+
+    <div>
+        <label for="UID">UID </label>
+        <input type="text" class="form-control" id="UID">
+    </div><br/>
+    <div id ="date_time">
+        <div>
+            <h5>Creation Date-Time:</h5>
+            <label for="cr_date">Date (YYYYMMDD)</label>
+            <input type="text" class="form-control" id="cr_date">
+
+            <label for="cr_time">Time (HHMMSS)</label>
+            <input type="text" class="form-control" id="cr_time">
+
+            <label for="cr_utc">UTC (true/false)</label>
+            <input type="text" class="form-control" id="cr_utc">
+        </div>
+        <div>
+            <h5>Start Date-Time:</h5>
+            <label for="st_date">Date (YYYYMMDD)</label>
+            <input type="text" class="form-control" id="st_date">
+
+            <label for="st_time">Time (HHMMSS)</label>
+            <input type="text" class="form-control" id="st_time">
+
+            <label for="st_utc">UTC (true/false)</label>
+            <input type="text" class="form-control" id="st_utc">
+        </div>
+    </div><br/>
+    <div>
+        <label for="Summary">Summary (Optional)</label>
+        <input type="text" class="form-control" id="Summary">
+    </div><br/>
+    <div id = "add_button">
+        <input type='submit' class="btn btn-primary" value ="Add Event" id="add_event">
+    </div><hr>
+
+    <h3>Create Calendar</h3>
+    <div>
+        <label for="file_name">Enter a new fileName (eg.(file.ics))</label>
+        <input type="text" class="form-control" id="file_name">
+        <label for="version">Calendar Verison</label>
+        <input type="text" class="form-control" id="version">
+        <label for="prod_id">Calendar Product ID</label>
+        <input type="text" class="form-control" id="prod_id">
+    </div><br/>
+    <h5 id="event">Add Event to Calendar File</h5>
+    <div>
+        <label for="UID2">UID </label>
+        <input type="text" class="form-control" id="UID2">
+    </div><br/>
+    <div id ="date_time2">
+        <div>
+            <h5>Creation Date-Time:</h5>
+            <label for="cr_date2">Date (YYYYMMDD)</label>
+            <input type="text" class="form-control" id="cr_date2">
+
+            <label for="cr_time2">Time (HHMMSS)</label>
+            <input type="text" class="form-control" id="cr_time2">
+
+            <label for="cr_utc2">UTC (true/false)</label>
+            <input type="text" class="form-control" id="cr_utc2">
+        </div>
+        <div>
+            <h5>Start Date-Time:</h5>
+            <label for="st_date2">Date (YYYYMMDD)</label>
+            <input type="text" class="form-control" id="st_date2">
+
+            <label for="st_time2">Time (HHMMSS)</label>
+            <input type="text" class="form-control" id="st_time2">
+
+            <label for="st_utc2">UTC (true/false)</label>
+            <input type="text" class="form-control" id="st_utc2">
+        </div>
+    </div><br/>
+    <div id = "create_button">
+        <input type='submit' class="btn btn-primary" value ="Create Calendar" id="create_cal">
+    </div><hr>
+
+    <!-- Data Base Stuff -->
+    <h3>DataBase</h3>
+    <div id = "login_div">
+        <h5>Login</h5>
+        <div>
+            <label for="user_name">UserName</label>
+            <input type="text" class="form-control" id="user_name">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password">
+            <label for="db_name">DataBase Name</label>
+            <input type="text" class="form-control" id="db_name">
+        </div>
+
+        <div id="login_state"></div><br/>
+
+        <div id = "login_button">
+            <input type='submit' class="btn btn-primary" value ="Login" id="db_login">
+        </div><hr>
+    </div>
+
+    <div id = "query_div1">
+        <p>Query results displayed in status panel</p><br/>
+        <h5>After logging in:</h5><br/>
+        <div id ="db_commands">
+            <input type='submit' class="btn btn-primary" value ="Store All Files" id="store_files">
+            <input type='submit' class="btn btn-primary" value ="Clear All Data" id="clear_data">
+            <input type='submit' class="btn btn-primary" value ="Display DB Status" id="view_db">
+        </div><hr>
+    </div>
+
+    <div id ="query_div2">
+        <h3>Standard Queries</h3>
+        <label for = "query_dropdown">Select a query to execute</label>
+        <select id = "query_dropdown">
+            <option>none</option>
+            <option>Display all events sorted by start date</option>
+            <option>Display events from a file</option>
+            <option>Display alarms from a file</option>
+            <option>Delete a calendar file</option>
+            <option>Delete upcoming event from file</option>
+        </select><br/>
+        <div id = "selectfile_div">
+            <label for = "choosefile_dropdown">Select a file to display events from</label>
+            <select id = "choosefile_dropdown">
+                <option></option>
+            </select>
+        </div>
+        <input type='submit' class="btn btn-primary" value ="Execute Query" id="execute"> 
+    </div><br/><hr>  
+
+    <!-- Leave me at the bottom of body -->
+    <script src="/index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+

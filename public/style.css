@@ -1,0 +1,101 @@
+html {
+    width: 65%;
+    min-height: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+    background-color: #FFFFFF;
+}
+
+body {
+    height: 100%;
+    min-height: 100%;
+    line-height: 1.75;
+    background-color: #FFFFFF;
+}
+
+th, td, h1{
+    text-align: center;
+}
+
+td {
+    height: 50px;
+}
+
+table {
+    width: 100%;
+}
+
+table, th, td, textarea{
+    border: 3px solid black;
+}
+
+textarea {
+    overflow: scroll;
+    height:150px;
+    width:700px;
+}
+
+#event{
+    text-align: center;
+}
+
+#add_button, #create_button{
+    display:flex;
+    justify-content: center;
+}
+
+
+#date_time , #date_time2, #db_commands{
+    display: flex;
+    justify-content: space-around;
+}
+
+.scroll {
+    overflow:scroll;
+    height:250px;
+}
+
+#showalarm_entry, #extract_entry {
+    width: 100px;
+}
+
+#UID, #Summary, #UID2, #user_name, #password, #db_name, #file_name, #prod_id, #version{
+    width:500px;
+}
+
+#view_forms {
+    display: flex;
+    justify-content: space-around;
+}
+
+a:link:hover {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    cursor: pointer;
+    cursor: hand;
+}
+input[type=submit], button {
+    cursor: pointer;
+    cursor: hand;
+}
+@media(max-width: 900px) {
+    html {
+        font-size: 14px !important;
+        width: 80% !important;
+    }
+}
+@media(max-width: 480px) {
+    html {
+        font-size: 12px !important;
+        width: 90% !important;
+    }
+}
+@media(max-width: 320px) {
+    html {
+        font-size: 12px !important;
+        width: 100% !important;
+    }
+}
+
