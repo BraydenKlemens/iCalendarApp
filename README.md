@@ -21,8 +21,7 @@ This web application was created solo for a very difficult course during my unde
 
 ## Install & Run
 
-Clone the repo
-Install: ```NodeJs``` ```npm``` ```gcc```
+Clone the repo & Install: ```NodeJs``` ```npm``` ```gcc```
 
 ```
 cd iCalendarApp
@@ -30,4 +29,8 @@ npm install
 cd parser
 make
 cd ..
+```
+Run the app
+```
+node app.js 1337
 ```
