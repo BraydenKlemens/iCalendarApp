@@ -30,7 +30,8 @@ cd parser
 make
 cd ..
 ```
-Run the app
+Run the app on a port number
 ```
 node app.js 1337
 ```
+On a browser navigate to: ```localhost:1337```
