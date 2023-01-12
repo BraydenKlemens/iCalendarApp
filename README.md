@@ -2,7 +2,7 @@
 Brayden Klemens - 2019
 
 ## About
-This web application was created solo for a very difficult course during my undergrad called Software Systems Development and Integration, otherwise known as "The Angel of Death". The purpose of the web application allow users to upload iCalendar files (.ics) for viewing and manipulation.
+The purpose of the web application allow users to upload iCalendar files (.ics) for viewing and manipulation.
 
 ## Use Cases
 - Login to the web application
